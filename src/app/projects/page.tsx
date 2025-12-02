@@ -30,20 +30,27 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div style={{ maxWidth: 700, margin: "40px auto" }}>
-      <h1>Projects</h1>
-      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
-        <input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <button onClick={create}>New Project</button>
+    <div className="stack" style={{ marginTop: 32 }}>
+      <h1 className="h1">Projects</h1>
+      <div className="row">
+        <input className="input" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <button className="btn btn-primary" onClick={create}>New Project</button>
       </div>
-      <ul>
+      <div className="grid grid-2">
         {projects.map((p) => (
-          <li key={p.id} style={{ display: "flex", gap: 8, alignItems: "center" }}>
-            <span>{p.title}</span>
-            <a href={`/workspace?id=${p.id}`} suppressHydrationWarning>Open</a>
-          </li>
+          <div key={p.id} className="card">
+            <div className="stack">
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ fontWeight: 600 }}>{p.title}</div>
+                <div className="muted" style={{ fontSize: 12 }}>{new Date(p.updatedAt).toLocaleString()}</div>
+              </div>
+              <div className="row">
+                <a className="btn btn-primary" href={`/workspace?id=${p.id}`} suppressHydrationWarning>Open</a>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

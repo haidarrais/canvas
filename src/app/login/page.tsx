@@ -29,27 +29,26 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={{ maxWidth: 400, margin: "40px auto" }}>
-      <h1>{mode === "login" ? "Login" : "Sign Up"}</h1>
-      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
-        <button onClick={() => setMode("login")}>Login</button>
-        <button onClick={() => setMode("signup")}>Sign Up</button>
+    <div className="stack" style={{ marginTop: 32, maxWidth: 520 }}>
+      <h1 className="h1">{mode === "login" ? "Login" : "Sign Up"}</h1>
+      <div className="row">
+        <button className="btn" onClick={() => setMode("login")}>Login</button>
+        <button className="btn" onClick={() => setMode("signup")}>Sign Up</button>
       </div>
-      <label>Email</label>
-      <input value={email} onChange={(e) => setEmail(e.target.value)} />
-      <label>Password</label>
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <span className="label">Email</span>
+      <input className="input" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <span className="label">Password</span>
+      <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       {mode === "signup" && (
         <>
-          <label>Name</label>
-          <input value={name} onChange={(e) => setName(e.target.value)} />
+          <span className="label">Name</span>
+          <input className="input" value={name} onChange={(e) => setName(e.target.value)} />
         </>
       )}
-      <div style={{ marginTop: 12 }}>
-        <button onClick={submit}>{mode === "login" ? "Login" : "Create Account"}</button>
+      <div>
+        <button className="btn btn-primary" onClick={submit}>{mode === "login" ? "Login" : "Create Account"}</button>
       </div>
-      {message && <p style={{ color: "crimson" }}>{message}</p>}
+      {message && <p style={{ color: "var(--danger)" }}>{message}</p>}
     </div>
   );
 }
-

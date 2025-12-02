@@ -122,21 +122,21 @@ export default function WorkspaceClient({ initialId }: { initialId: string | nul
   }
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "200px 1fr 240px", height: "100vh" }}>
-      <div style={{ borderRight: "1px solid #ddd", padding: 12 }}>
-        <h3>Tools</h3>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          <button onClick={() => setTool("select")} disabled={tool === "select"}>Select</button>
-          <button onClick={() => setTool("rect")} disabled={tool === "rect"}>Rectangle</button>
-          <button onClick={() => setTool("circle")} disabled={tool === "circle"}>Circle</button>
-          <button onClick={() => setTool("line")} disabled={tool === "line"}>Line</button>
+    <div className="workspace">
+      <div className="workspace-sidebar stack">
+        <h3 className="h2">Tools</h3>
+        <div className="stack">
+          <button className="btn" onClick={() => setTool("select")} disabled={tool === "select"}>Select</button>
+          <button className="btn" onClick={() => setTool("rect")} disabled={tool === "rect"}>Rectangle</button>
+          <button className="btn" onClick={() => setTool("circle")} disabled={tool === "circle"}>Circle</button>
+          <button className="btn" onClick={() => setTool("line")} disabled={tool === "line"}>Line</button>
         </div>
-        <h3 style={{ marginTop: 16 }}>Project</h3>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
-        <p>ID: {id}</p>
-        <a href="/projects" suppressHydrationWarning>Back to Projects</a>
+        <h3 className="h2">Project</h3>
+        <input className="input" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <p className="muted">ID: {id}</p>
+        <a className="nav-link" href="/projects" suppressHydrationWarning>Back to Projects</a>
       </div>
-      <svg onMouseDown={tool === "select" ? undefined : onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp} style={{ width: "100%", height: "100%", background: "#fafafa" }}>
+      <svg className="workspace-canvas" onMouseDown={tool === "select" ? undefined : onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}>
         {shapes.map((s) => {
           if (s.type === "rect") {
             const x = Math.min(s.x, s.x + s.w);
@@ -168,21 +168,21 @@ export default function WorkspaceClient({ initialId }: { initialId: string | nul
           }
         })}
       </svg>
-      <div style={{ borderLeft: "1px solid #ddd", padding: 12 }}>
-        <h3>Selection</h3>
+      <div className="workspace-right">
+        <h3 className="h2">Selection</h3>
         {selected ? (
-          <div>
-            <p>Type: {selected.type}</p>
-            <p>{measurementText(selected)}</p>
-            <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
-              <button onClick={() => onMoveSelected(1, 0)}>→</button>
-              <button onClick={() => onMoveSelected(-1, 0)}>←</button>
-              <button onClick={() => onMoveSelected(0, -1)}>↑</button>
-              <button onClick={() => onMoveSelected(0, 1)}>↓</button>
+          <div className="stack">
+            <div>Type: {selected.type}</div>
+            <div className="muted">{measurementText(selected)}</div>
+            <div className="row" style={{ marginTop: 8 }}>
+              <button className="btn" onClick={() => onMoveSelected(1, 0)}>→</button>
+              <button className="btn" onClick={() => onMoveSelected(-1, 0)}>←</button>
+              <button className="btn" onClick={() => onMoveSelected(0, -1)}>↑</button>
+              <button className="btn" onClick={() => onMoveSelected(0, 1)}>↓</button>
             </div>
           </div>
         ) : (
-          <p>No selection</p>
+          <p className="muted">No selection</p>
         )}
       </div>
     </div>

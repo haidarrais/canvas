@@ -47,23 +47,22 @@ export default function ItemsPage() {
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: "40px auto" }}>
-      <h1>Items</h1>
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
-        <input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-        <button onClick={addItem}>Add Item</button>
+    <div className="stack" style={{ marginTop: 32 }}>
+      <h1 className="h1">Items</h1>
+      <div className="stack">
+        <input className="input" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input className="input" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+        <button className="btn btn-primary" onClick={addItem}>Add Item</button>
       </div>
-      {error && <p style={{ color: "crimson" }}>{error}</p>}
-      <ul>
+      {error && <p style={{ color: "var(--danger)" }}>{error}</p>}
+      <div className="grid grid-2">
         {items.map((i) => (
-          <li key={i.id} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          <div key={i.id} className="card row" style={{ justifyContent: "space-between" }}>
             <span>{i.title}</span>
-            <button onClick={() => deleteItem(i.id)}>Delete</button>
-          </li>
+            <button className="btn btn-danger" onClick={() => deleteItem(i.id)}>Delete</button>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
-

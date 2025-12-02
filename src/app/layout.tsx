@@ -26,7 +26,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-        {children}
+        <header className="nav">
+          <div className="container nav-inner">
+            <div className="brand">Canvas Projects</div>
+            <nav className="nav-links">
+              <a className="nav-link" href="/projects" suppressHydrationWarning>Projects</a>
+              <a className="nav-link" href="/docs" suppressHydrationWarning>Docs</a>
+            </nav>
+          </div>
+        </header>
+        <main className="container animate-in">
+          {children}
+        </main>
       </body>
     </html>
   );
